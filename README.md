@@ -30,7 +30,7 @@ Dependencies
 ------------
 
 List of dependecies:
-[Clickhouse role](git@github.com:AlexeySetevoi/ansible-clickhouse.git)
+[Clickhouse role](https://github.com/AlexeySetevoi/ansible-clickhouse.git)
 
 Example Playbook
 ----------------
