@@ -1,0 +1,15 @@
+---
+# defaults file for vector-role
+vector_version: 'latest'
+vector_arch: x86_64
+
+vector_sink_name: clickhouse
+vector_sink_type: clickhouse
+vector_sink_address: 10.0.1.27
+
+vector_sink_table: table1
+ansible_user_id: vector
+ansible_group_id: vector
+
+vector_source_name: nginx_logs
+vector_source_type: file
