@@ -1,4 +1,6 @@
 galaxy_info:
+  role_name: vector_role  # if absent directory name hosting role is used instead
+  namespace: galaxy_namespace_vector
   author: Leonid Fedin
   description: Ansible role for install & configure vector
   company: Netology
@@ -16,7 +18,7 @@ galaxy_info:
   # - CC-BY-4.0
   license: MIT
 
-  min_ansible_version: 2.10
+  min_ansible_version: "2.10"
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
