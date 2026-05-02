@@ -1,6 +1,6 @@
 ---
 # defaults file for vector-role
-vector_version: 'latest'
+vector_version: '0.55.0'
 vector_arch: x86_64
 
 vector_sink_name: clickhouse
