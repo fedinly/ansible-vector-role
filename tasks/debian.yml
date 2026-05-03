@@ -2,8 +2,8 @@
   ansible.builtin.get_url:
     url: "https://apt.vector.dev/pool/v/ve/{{ item }}_{{ vector_version }}-1_{{ vector_arch_deb }}.deb"
     dest: "./{{ item }}_{{ vector_version }}-1_{{ vector_arch_deb }}.deb"
+    validate_certs: false
   with_items: "{{ vector_packages }}"
-  validate_certs: false
 
 - name: Vector | Install packages
   become: true
