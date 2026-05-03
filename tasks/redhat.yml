@@ -1,7 +1,7 @@
 - name: Vector | Get vector distrib
   ansible.builtin.get_url:
     url: "https://yum.vector.dev/stable/vector-0/{{ vector_arch_rpm }}/{{ item }}-{{
-      vector_version }}-1.{{ vector_arch }}.rpm"
+      vector_version }}-1.{{ vector_arch_rpm }}.rpm"
     dest: "./{{ item }}-{{ vector_version }}-1.{{ vector_arch_rpm }}.rpm"
   with_items: "{{ vector_packages }}"
 
