@@ -1,0 +1,7 @@
+- name: Install Vector for RHEL
+  ansible.builtin.import_tasks: redhat.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Install Vector for Debian
+  ansible.builtin.import_tasks: debian.yml
+  when: ansible_facts['os_family']|lower == 'debian'

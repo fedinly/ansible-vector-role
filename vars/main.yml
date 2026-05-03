@@ -1,0 +1,12 @@
+---
+# vars file for vector-role4
+vector_arch_rpm: x86_64
+vector_arch_deb: amd64
+vector_packages:
+  - vector
+vector_data_dir: /var/lib/vector
+vector_config_path: /etc/vector/vector
+vector_log_path: /var/log/nginx/*.log
+
+vector_source_name: nginx_logs
+vector_source_type: file

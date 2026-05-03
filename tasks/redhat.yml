@@ -1,0 +1,42 @@
+- name: Vector | Get vector distrib
+  ansible.builtin.get_url:
+    url: "https://yum.vector.dev/stable/vector-0/{{ vector_arch_rpm }}/{{ item }}-{{
+      vector_version }}-1.{{ vector_arch }}.rpm"
+    dest: "./{{ item }}-{{ vector_version }}-1.{{ vector_arch_rpm }}.rpm"
+  with_items: "{{ vector_packages }}"
+
+- name: Vector | Install packages
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - vector-{{ vector_version }}-1.{{ vector_arch_rpm }}.rpm
+    state: present
+    disable_gpg_check: true
+
+- name: Vector | Install config
+  become: true
+  template:
+    src: vector.yml.j2
+    dest: vector.yml
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_group_id }}"
+    mode: "0644"
+    validate:
+- name: Vector | Install service
+  become: true
+  template:
+    src: vector.service.j2
+    dest: /etc/systemd/system/vector.service
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_group_id }}"
+    mode: "0644"
+#   notify: Restart vector service
+# - name: Flush handlers
+#   meta: flush_handlers
+- name: Vector | Start service
+  become: true
+  ansible.builtin.systemd:
+    name: vector
+    state: started
+    daemon_reload: true
+    masked: no
