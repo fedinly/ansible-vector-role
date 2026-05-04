@@ -1,10 +1,15 @@
 ---
 # This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
-  gather_facts: false
   tasks:
-    - name: Example assertion
+    - name: Check if the service is running
+      ansible.builtin.service_facts:
+
+    - name: Assert service status
       ansible.builtin.assert:
-        that: true
+        that:
+          - "'vector.service' in ansible_facts.services"
+          - "ansible_facts.services['vector.service'].state == 'running'"
+        fail_msg: "Vector is not running!"
+        success_msg: "Vector is running"
