@@ -17,7 +17,7 @@
   become: true
   template:
     src: vector.yml.j2
-    dest: vector.yml
+    dest: /etc/vector/vector.yml
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_group_id }}"
     mode: "0644"

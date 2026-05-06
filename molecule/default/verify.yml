@@ -2,6 +2,7 @@
 # This is an example playbook to execute Ansible tests.
 - name: Verify
   hosts: all
+  
   tasks:
     - name: Check if the service is running
       ansible.builtin.service_facts:
@@ -13,3 +14,17 @@
           - "ansible_facts.services['vector.service'].state == 'running'"
         fail_msg: "Vector is not running!"
         success_msg: "Vector is running"
+
+    - name: Check Vector conf file
+      block:
+        - name: "Vector - retrieve info from file '{{ vector_config_path }}'"
+          stat:
+            path: "{{ vector_config_path }}"
+          register: remote_file
+        - name: "Vector - assert that '{{ vector_config_path }}' is created"
+          assert:
+            that:
+              - "remote_file.stat.exists"
+              - "remote_file.stat.isreg"
+              - "remote_file.stat.path == '{{ vector_config_path }}'"
+              - "remote_file.stat.mode == '0644'"

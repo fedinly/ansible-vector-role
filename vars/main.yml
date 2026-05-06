@@ -5,7 +5,7 @@ vector_arch_deb: amd64
 vector_packages:
   - vector
 vector_data_dir: /var/lib/vector
-vector_config_path: /etc/vector/vector
+vector_config_path: /etc/vector/vector.yml
 vector_log_path: /var/log/nginx/*.log
 
 vector_source_name: nginx_logs
